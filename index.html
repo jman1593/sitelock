@@ -8,32 +8,21 @@
 <body>
 
 <script>
-    // Function to get URL parameter by name
-    function getParameterByName(name, url) {
-        if (!url) url = window.location.href;
-        name = name.replace(/[\[\]]/g, '\\$&');
-        var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-            results = regex.exec(url);
-        if (!results) return null;
-        if (!results[2]) return '';
-        return decodeURIComponent(results[2].replace(/\+/g, ' '));
-    }
+    // Get the origin of the page
+    var pageOrigin = window.location.origin;
 
-    // Get the value of the 'referrer' parameter
-    var referrer = getParameterByName('referrer');
+    // Get the origin of the parent frame
+    var parentOrigin = window.parent ? window.parent.location.origin : null;
 
-    // Define the allowed domains
-    var allowedDomains = ["strongdog.com", "jamn1593.github.io"];
-
-    // Check if the referrer is in the allowed domains or it's null
-    if (referrer !== null && allowedDomains.indexOf(referrer) !== -1) {
-        // Output the referrer (the site where the file is embedded)
-        console.log('File embedded on:', referrer);
-        // Display a message indicating it's a safe site
-        document.body.innerHTML = '<h1>This is a safe site!</h1>';
+    // Check if the page is embedded on the same site
+    if (parentOrigin === pageOrigin) {
+        // The page is embedded on the same site
+        // Proceed with your code here
+        console.log("Embedded on the same site.");
     } else {
-        // If not, stop further execution and show an image
-        document.body.innerHTML = '<img src="monkey.jpg" alt="Image">';
+        // The page is not embedded on the same site
+        // Stop further execution
+        console.log("Not embedded on the same site.");
     }
 </script>
 

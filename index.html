@@ -7,11 +7,11 @@
 <script>
     window.onload = function() {
         var currentSite = window.location.hostname; // Get the hostname of the current site
-        var referringSite = document.referrer.split('/')[2]; // Get the hostname of the referring site
+        var referringSite = document.referrer ? document.referrer.split('/')[2] : null; // Get the hostname of the referring site or null if not available
         
-        // Check if the referring site matches the current site
-        if (referringSite === currentSite) {
-            document.getElementById("result").innerText = "This script is embedded on the correct site.";
+        // Check if the script is embedded
+        if (referringSite === null || referringSite === currentSite) {
+            document.getElementById("result").innerText = referringSite === null ? "This script is not embedded." : "This script is embedded on the correct site.";
         } else {
             document.getElementById("result").innerText = "This script is embedded on a different site.";
         }

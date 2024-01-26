@@ -11,32 +11,6 @@
         
         // Check if the script is embedded
         if (!referringSite) {
-            document.getElementById("result").innerText = "This script is not embedded.";
-        } else if (referringSite === currentSite) {
-            document.getElementById("result").innerText = "This script is embedded on the correct site.";
-        } else {
-            document.getElementById("result").innerText = "This script is embedded on a different site.";
-        }
-    }
-</script>
-</head>
-<body>
-    <div id="result"></div>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Site Embed Detection</title>
-<script>
-    window.onload = function() {
-        var currentSite = window.location.hostname; // Get the hostname of the current site
-        var referringSite = document.referrer ? document.referrer.split('/')[2] : null; // Get the hostname of the referring site or null if not available
-        
-        // Check if the script is embedded
-        if (!referringSite) {
             // Execute code if the script is not embedded
             console.log("This script is not embedded.");
         } else if (referringSite === currentSite) {

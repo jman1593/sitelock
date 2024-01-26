@@ -29,7 +29,8 @@
     if (referrer !== null && allowedDomains.indexOf(referrer) !== -1) {
         // Output the referrer (the site where the file is embedded)
         console.log('File embedded on:', referrer);
-        // Further code execution here if needed
+        // Display a message indicating it's a safe site
+        document.body.innerHTML = '<h1>This is a safe site!</h1>';
     } else {
         // If not, stop further execution and show an image
         document.body.innerHTML = '<img src="monkey.jpg" alt="Image">';

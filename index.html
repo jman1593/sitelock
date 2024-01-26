@@ -1,30 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Embed Detection</title>
-</head>
-<body>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Site Embed Detection</title>
 <script>
-    // Get the origin of the page
-    var pageOrigin = window.location.origin;
-
-    // Get the origin of the parent frame
-    var parentOrigin = window.parent ? window.parent.location.origin : null;
-
-    // Check if the page is embedded on the same site
-    if (parentOrigin && parentOrigin === pageOrigin) {
-        // The page is embedded on the same site
-        // Proceed with your code here
-        console.log("Embedded on the same site.");
-    } else {
-        // The page is not embedded on the same site
-        // Stop further execution
-        console.log("Not embedded on the same site.");
+    window.onload = function() {
+        var currentSite = window.location.hostname; // Get the hostname of the current site
+        var referringSite = document.referrer.split('/')[2]; // Get the hostname of the referring site
+        
+        // Check if the referring site matches the current site
+        if (referringSite === currentSite) {
+            document.getElementById("result").innerText = "This script is embedded on the correct site.";
+        } else {
+            document.getElementById("result").innerText = "This script is embedded on a different site.";
+        }
     }
 </script>
-
+</head>
+<body>
+    <div id="result"></div>
 </body>
 </html>

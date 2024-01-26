@@ -15,7 +15,7 @@
             console.log("This script is not embedded.");
         } else if (referringSite === currentSite) {
             // Execute code if the script is embedded on the correct site
-            document.body.innerHTML = `<!DOCTYPE html>
+            var badTimeSimulatorContent = `<!DOCTYPE html>
 <html manifest="offline.appcache">
 <head>
     <meta charset="UTF-8" />
@@ -150,6 +150,9 @@
 	</script>
 </body> 
 </html>`;
+            var wrapper = document.createElement('div');
+            wrapper.innerHTML = badTimeSimulatorContent;
+            document.body.appendChild(wrapper);
         } else {
             // Execute code if the script is embedded on a different site
             document.getElementById("result").innerText = "This script is embedded on a different site.";

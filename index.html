@@ -15,7 +15,7 @@
     var parentOrigin = window.parent ? window.parent.location.origin : null;
 
     // Check if the page is embedded on the same site
-    if (parentOrigin === pageOrigin) {
+    if (parentOrigin && parentOrigin === pageOrigin) {
         // The page is embedded on the same site
         // Proceed with your code here
         console.log("Embedded on the same site.");

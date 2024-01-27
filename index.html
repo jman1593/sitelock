@@ -2,6 +2,41 @@
 <meta http-equiv="X-Frame-Options" content="deny">
 <html manifest="offline.appcache">
 <head>
+	<script type="text/javascript">
+        // Function to check if the site is hosted on allowed domain or is in an allowed frame
+        function isAllowed() {
+            var allowedDomains = ['strongdog.com'];
+            var currentDomain = window.location.hostname;
+            var parentDomain = null;
+
+            try {
+                parentDomain = window.parent.location.hostname;
+            } catch (e) {
+                // Same-origin policy might prevent reading the parent's hostname
+                console.log("Unable to retrieve parent domain due to same-origin policy.");
+            }
+
+            // Check if not framed or is in an allowed frame
+            return (window.self === window.top) || 
+                   (allowedDomains.includes(currentDomain)) ||
+                   (parentDomain && allowedDomains.includes(parentDomain));
+        }
+
+        // Initialize the game only if it's on an allowed domain
+        function initializeGame() {
+            if (isAllowed()) {
+                console.log("Game initialized!");
+                var canvas = document.createElement("canvas");
+                canvas.id = 'gameCanvas';
+                document.body.appendChild(canvas);
+                // Additional game setup code...
+            } else {
+                console.log("Initialization blocked due to unallowed domain.");
+            }
+        }
+
+        window.onload = initializeGame;
+    </script>
     <meta charset="UTF-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<title>Bad Time Simulator (Sans Fight)</title>
